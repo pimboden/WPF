@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001_Basics", "001_Basics\001_Basics.csproj", "{3E70660F-1AB7-46F1-B7D7-44CA8EBC5901}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "002_TreeViewAndValueConverters", "002_TreeViewAndValueConverters\002_TreeViewAndValueConverters.csproj", "{6FB45439-C430-4115-BA10-95978515C00E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003_MVVM_Basics", "003_MVVM_Basics\003_MVVM_Basics.csproj", "{4AAF6DCA-A1B3-4122-AB48-398661231984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6FB45439-C430-4115-BA10-95978515C00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB45439-C430-4115-BA10-95978515C00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FB45439-C430-4115-BA10-95978515C00E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

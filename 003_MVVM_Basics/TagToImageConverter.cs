@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace Learn.Wpf.TreeViewAndValueConverters
+namespace Learn.Wpf.MVVM_Basics
 {
     [ValueConversion(typeof(string), typeof(BitmapImage))]
     public class TagToImageConverter :IValueConverter

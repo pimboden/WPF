@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Learn.Wpf.TreeViewAndValueConverters
+namespace Learn.Wpf.MVVM_Basics
 {
     public static class StringExtensions
     {

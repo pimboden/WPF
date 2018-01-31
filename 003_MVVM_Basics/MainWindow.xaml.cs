@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Learn.Wpf.TreeViewAndValueConverters
+namespace Learn.Wpf.MVVM_Basics
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6FB45439-C430-4115-BA10-95978515C00E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TreeViewAndValueConverters</RootNamespace>
-    <AssemblyName>TreeViewAndValueConverters</AssemblyName>
+    <RootNamespace>Learn.Wpf.TreeViewAndValueConverters</RootNamespace>
+    <AssemblyName>Learn.Wpf.TreeViewAndValueConverters</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

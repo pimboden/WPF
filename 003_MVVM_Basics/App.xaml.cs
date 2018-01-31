@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Learn.Wpf.TreeViewAndValueConverters
+namespace Learn.Wpf.MVVM_Basics
 {
     /// <summary>
     /// Interaction logic for App.xaml

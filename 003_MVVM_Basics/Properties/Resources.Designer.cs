@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Learn.Wpf.TreeViewAndValueConverters.Properties {
+namespace Learn.Wpf.MVVM_Basics.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Learn.Wpf.TreeViewAndValueConverters.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Learn.Wpf.TreeViewAndValueConverters.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Learn.Wpf.MVVM_Basics.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
