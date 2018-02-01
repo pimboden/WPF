@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using Learn.Wpf.MVVM_Basics.ViewModels;
 
 namespace Learn.Wpf.MVVM_Basics
