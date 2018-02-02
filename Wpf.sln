@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003_MVVM_Basics", "003_MVVM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "004_CustomWindowsChromeStyles", "004_CustomWindowsChromeStyles\004_CustomWindowsChromeStyles.csproj", "{8B90965A-B867-4C52-B843-B4DABFA423AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "005_CreatingLoginFormSignupScreen", "005_CreatingLoginFormSignupScreen\005_CreatingLoginFormSignupScreen.csproj", "{EC95879B-6DD3-4229-8228-FB47829BC62C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "005_CreatingLoginFormSignupScreen", "005_CreatingLoginFormSignupScreen\005_CreatingLoginFormSignupScreen.csproj", "{22E6F781-4A84-4925-92C8-D8C86DC38FF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC95879B-6DD3-4229-8228-FB47829BC62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC95879B-6DD3-4229-8228-FB47829BC62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC95879B-6DD3-4229-8228-FB47829BC62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC95879B-6DD3-4229-8228-FB47829BC62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E6F781-4A84-4925-92C8-D8C86DC38FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E6F781-4A84-4925-92C8-D8C86DC38FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E6F781-4A84-4925-92C8-D8C86DC38FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E6F781-4A84-4925-92C8-D8C86DC38FF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
