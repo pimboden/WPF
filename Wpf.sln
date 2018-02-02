@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "002_TreeViewAndValueConvert
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003_MVVM_Basics", "003_MVVM_Basics\003_MVVM_Basics.csproj", "{4AAF6DCA-A1B3-4122-AB48-398661231984}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "004_CustomWindowsChromeStyles", "004_CustomWindowsChromeStyles\004_CustomWindowsChromeStyles.csproj", "{8B90965A-B867-4C52-B843-B4DABFA423AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AAF6DCA-A1B3-4122-AB48-398661231984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B90965A-B867-4C52-B843-B4DABFA423AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
