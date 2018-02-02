@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Learn.Wpf.CustomWindowsChromeStyles.Properties {
+namespace Learn.Wpf.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Learn.Wpf.CustomWindowsChromeStyles.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Learn.Wpf.CustomWindowsChromeStyles.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Learn.Wpf.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

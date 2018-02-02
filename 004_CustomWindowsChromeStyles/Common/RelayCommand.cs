@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Learn.Wpf.CustomWindowsChromeStyles.Common
+namespace Learn.Wpf.Common
 {
     public class RelayCommand: ICommand
     {

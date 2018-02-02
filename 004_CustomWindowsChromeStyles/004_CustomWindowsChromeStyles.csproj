@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8B90965A-B867-4C52-B843-B4DABFA423AA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Learn.Wpf.CustomWindowsChromeStyles</RootNamespace>
+    <RootNamespace>Learn.Wpf</RootNamespace>
     <AssemblyName>Learn.Wpf.CustomWindowsChromeStyles</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

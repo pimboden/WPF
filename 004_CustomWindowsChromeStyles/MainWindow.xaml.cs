@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Learn.Wpf.CustomWindowsChromeStyles.ViewModels;
+using Learn.Wpf.ViewModels;
 
-namespace Learn.Wpf.CustomWindowsChromeStyles
+namespace Learn.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using Learn.Wpf.CustomWindowsChromeStyles.Common;
+using Learn.Wpf.Common;
 
-namespace Learn.Wpf.CustomWindowsChromeStyles.ViewModels
+namespace Learn.Wpf.ViewModels
 {
     /// <summary>
     /// The ViewModel for the flat window 
@@ -110,12 +105,12 @@ namespace Learn.Wpf.CustomWindowsChromeStyles.ViewModels
             };
 
             MinimizeCommand = new RelayCommand(() => _window.WindowState = WindowState.Minimized);
-            //MaximizeCommand = new RelayCommand(() => _window.WindowState = _window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(() => _window.WindowState ^= WindowState.Maximized);
+            MaximizeCommand = new RelayCommand(() => _window.WindowState = _window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized);
             CloseCommand = new RelayCommand(() => _window.Close());
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(_window, _window.PointToScreen(Mouse.GetPosition(_window))));
 
             //Fix window resize issue
+            // ReSharper disable once UnusedVariable
             var resizer = new WindowResizer(_window);
         }
 

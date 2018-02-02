@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Learn.Wpf.CustomWindowsChromeStyles.ViewModels
+namespace Learn.Wpf.ViewModels
 {
 
     /// <summary>
