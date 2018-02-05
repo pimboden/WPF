@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Learn.Wpf"
+        xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
         mc:Ignorable="d"
         WindowStyle="None"
         MinHeight="{Binding WindowMinimumHeight}"
@@ -44,8 +45,6 @@
                                     <Grid.RowDefinitions>
                                         <!--Tilte bar-->
                                         <RowDefinition Height="{Binding TileHeightGridLength, FallbackValue=42}"/>
-                                        <!--Drop shadow-->
-                                        <RowDefinition Height="Auto"/>
                                         <!--Window content-->
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
@@ -75,26 +74,8 @@
                                             <Button  Style="{StaticResource WindowCloseButton}"  Content="X" Command="{Binding CloseCommand}"/>
                                         </StackPanel>
                                     </Grid>
-                                    <!--Drop shadow-->
-                                    <Border Grid.Row="1" Style="{StaticResource HeaderDropShadow}">
-                                        <!-- Underline -->
-                                        <Border.BorderBrush>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="0.0"></GradientStop>
-                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5"></GradientStop>
-                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1"></GradientStop>
-                                            </LinearGradientBrush>
-                                        </Border.BorderBrush>
-                                        <!-- Drop shadow -->
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="0.0"></GradientStop>
-                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0"></GradientStop>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
                                     <!--Page Content-->
-                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
                                         <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
                                     </Border>
                                 </Grid>
@@ -115,6 +96,6 @@
     </WindowChrome.WindowChrome>
 
     <Grid Background="{StaticResource ForegroundLightBrush}">
-        <TextBlock Text="I'm the content grid"></TextBlock>
+        <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={valueConverters:ApplicationPageValueConverter}}"></Frame>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Learn.Wpf.Common;
+using Learn.Wpf.DataModels;
 
 namespace Learn.Wpf.ViewModels
 {
@@ -41,7 +42,7 @@ namespace Learn.Wpf.ViewModels
         /// <summary>
         /// The padding of the inner content od the main window
         /// </summary>
-        public Thickness InnerContentPadding => new Thickness(ResizeBorder);
+        public Thickness InnerContentPadding { get; set; } = new Thickness(0);
 
 
         /// <summary>
@@ -87,7 +88,8 @@ namespace Learn.Wpf.ViewModels
         public CornerRadius WindowCornerRadius => new CornerRadius(WindowRadius);
 
 
-
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
+    
         public WindowViewModel(Window window)
         {
             _window = window;
