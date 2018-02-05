@@ -15,10 +15,10 @@ namespace Learn.Wpf.ViewModels
 
 
         /// <summary>
-        /// Call this to fire <see cref="PropertyChnaged"/> event
+        /// Call this to fire <see cref="PropertyChanged"/> event
         /// </summary>
         /// <param name="name"></param>
-        public void OnPropertyChnaged(string name)
+        public void OnPropertyChanged(string name)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(name) );
         }

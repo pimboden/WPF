@@ -1,85 +1,105 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Learn.Wpf.Common;
-using Learn.Wpf.DataModels;
 
 namespace Learn.Wpf.ViewModels
 {
     /// <summary>
-    /// The ViewModel for the flat window 
+    /// The View Model for the custom flat window
     /// </summary>
     public class WindowViewModel : BaseViewModel
     {
+        #region Private Member
+
         /// <summary>
-        /// The window this Viewmodel Controls
+        /// The window this view model controls
         /// </summary>
         private Window _window;
 
+        /// <summary>
+        /// The margin around the window to allow for a drop shadow
+        /// </summary>
         private int _outerMarginSize = 10;
+
+        /// <summary>
+        /// The radius of the edges of the window
+        /// </summary>
         private int _windowRadius = 10;
 
         /// <summary>
-        /// The Height of the title basr /caption of the window
+        /// The last known dock position
         /// </summary>
-        public int TitleHeight { get; set; } = 42;
+        private WindowDockPosition _dockPosition = WindowDockPosition.Undocked;
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
-        /// The Height of the title basr /caption of the window
+        /// The smallest width the window can go to
         /// </summary>
-        public GridLength TileHeightGridLength => new GridLength(TitleHeight + ResizeBorder);
+        public double WindowMinimumWidth { get; set; } = 400;
 
         /// <summary>
-        /// The size of the border around the window
+        /// The smallest height the window can go to
         /// </summary>
-        public int ResizeBorder { get; set; } = 6;
+        public double WindowMinimumHeight { get; set; } = 400;
+
+        /// <summary>
+        /// True if the window should be borderless because it is docked or maximized
+        /// </summary>
+        public bool Borderless => (_window.WindowState == WindowState.Maximized || _dockPosition != WindowDockPosition.Undocked);
 
         /// <summary>
         /// The size of the resize border around the window
         /// </summary>
-        public Thickness ResizeBorderThickness => new Thickness(ResizeBorder + OuterMargingSize);
-
-
-        /// <summary>
-        /// The padding of the inner content od the main window
-        /// </summary>
-        public Thickness InnerContentPadding { get; set; } = new Thickness(0);
-
+        public int ResizeBorder => Borderless ? 0 : 6;
 
         /// <summary>
-        /// The smallest window with
+        /// The size of the resize border around the window, taking into account the outer margin
         /// </summary>
-        public double WindowMinimumWidth { get; set; } = 200;
+        public Thickness ResizeBorderThickness => new Thickness(ResizeBorder + OuterMarginSize);
 
         /// <summary>
-        /// The smallest window height
+        /// The padding of the inner content of the main window
         /// </summary>
-        public double WindowMinimumHeight { get; set; } = 200;
-        
-        
-        
+        public Thickness InnerContentPadding => new Thickness(ResizeBorder);
+
         /// <summary>
         /// The margin around the window to allow for a drop shadow
         /// </summary>
-        public int OuterMargingSize
+        public int OuterMarginSize
         {
-            get => _window.WindowState == WindowState.Maximized ? 0 : _outerMarginSize;
-            set => _outerMarginSize = value;
+            get
+            {
+                // If it is maximized or docked, no border
+                return Borderless ? 0 : _outerMarginSize;
+            }
+            set
+            {
+                _outerMarginSize = value;
+            }
         }
 
-
         /// <summary>
-        /// The margin Thikness around the window to allow for a drop shadow
+        /// The margin around the window to allow for a drop shadow
         /// </summary>
-        public Thickness OuterMargingSizeThikness => new Thickness(OuterMargingSize);
-
+        public Thickness OuterMarginSizeThickness => new Thickness(OuterMarginSize);
 
         /// <summary>
         /// The radius of the edges of the window
         /// </summary>
         public int WindowRadius
         {
-            get => _window.WindowState == WindowState.Maximized ? 0 : _windowRadius;
-            set => _windowRadius = value;
+            get
+            {
+                // If it is maximized or docked, no border
+                return Borderless ? 0 : _windowRadius;
+            }
+            set
+            {
+                _windowRadius = value;
+            }
         }
 
         /// <summary>
@@ -87,38 +107,110 @@ namespace Learn.Wpf.ViewModels
         /// </summary>
         public CornerRadius WindowCornerRadius => new CornerRadius(WindowRadius);
 
+        /// <summary>
+        /// The height of the title bar / caption of the window
+        /// </summary>
+        public int TitleHeight { get; set; } = 42;
+        /// <summary>
+        /// The height of the title bar / caption of the window
+        /// </summary>
+        public GridLength TitleHeightGridLength => new GridLength(TitleHeight + ResizeBorder);
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
-    
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// The command to minimize the window
+        /// </summary>
+        public ICommand MinimizeCommand { get; set; }
+
+        /// <summary>
+        /// The command to maximize the window
+        /// </summary>
+        public ICommand MaximizeCommand { get; set; }
+
+        /// <summary>
+        /// The command to close the window
+        /// </summary>
+        public ICommand CloseCommand { get; set; }
+
+        /// <summary>
+        /// The command to show the system menu of the window
+        /// </summary>
+        public ICommand MenuCommand { get; set; }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public WindowViewModel(Window window)
         {
             _window = window;
-            //Listen for window resizing
+
+            // Listen out for the window resizing
             _window.StateChanged += (sender, e) =>
             {
-                // Fire events for all properties that are affecte ba a resize
-                OnPropertyChnaged(nameof(ResizeBorderThickness));
-                OnPropertyChnaged(nameof(OuterMargingSize));
-                OnPropertyChnaged(nameof(OuterMargingSizeThikness));
-                OnPropertyChnaged(nameof(ResizeBorder));
-                OnPropertyChnaged(nameof(WindowRadius));
-                OnPropertyChnaged(nameof(WindowCornerRadius));
-
+                // Fire off events for all properties that are affected by a resize
+                WindowResized();
             };
 
+            // Create commands
             MinimizeCommand = new RelayCommand(() => _window.WindowState = WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(() => _window.WindowState = _window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized);
+            MaximizeCommand = new RelayCommand(() => _window.WindowState ^= WindowState.Maximized);
             CloseCommand = new RelayCommand(() => _window.Close());
-            MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(_window, _window.PointToScreen(Mouse.GetPosition(_window))));
+            MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(_window, GetMousePosition()));
 
-            //Fix window resize issue
-            // ReSharper disable once UnusedVariable
+            // Fix window resize issue
             var resizer = new WindowResizer(_window);
+
+            // Listen out for dock changes
+            resizer.WindowDockChanged += (dock) =>
+            {
+                // Store last position
+                _dockPosition = dock;
+
+                // Fire off resize events
+                WindowResized();
+            };
         }
 
-        public ICommand MinimizeCommand { get; set; }
-        public ICommand MaximizeCommand { get; set; }
-        public ICommand CloseCommand { get; set; }
-        public ICommand MenuCommand { get; set; }
+        #endregion
+
+        #region Private Helpers
+
+        /// <summary>
+        /// Gets the current mouse position on the screen
+        /// </summary>
+        /// <returns></returns>
+        private Point GetMousePosition()
+        {
+            // Position of the mouse relative to the window
+            var position = Mouse.GetPosition(_window);
+
+            // Add the window position so its a "ToScreen"
+            return new Point(position.X + _window.Left, position.Y + _window.Top);
+        }
+
+        /// <summary>
+        /// If the window resizes to a special position (docked or maximized)
+        /// this will update all required property change events to set the borders and radius values
+        /// </summary>
+        private void WindowResized()
+        {
+            // Fire off events for all properties that are affected by a resize
+            OnPropertyChanged(nameof(Borderless));
+            OnPropertyChanged(nameof(ResizeBorderThickness));
+            OnPropertyChanged(nameof(OuterMarginSize));
+            OnPropertyChanged(nameof(OuterMarginSizeThickness));
+            OnPropertyChanged(nameof(WindowRadius));
+            OnPropertyChanged(nameof(WindowCornerRadius));
+        }
+
+
+        #endregion
     }
 }

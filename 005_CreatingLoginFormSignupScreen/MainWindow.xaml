@@ -63,9 +63,16 @@
                                             <Image Source="Images/Logo/logo-small.png"/>
                                         </Button>
                                         <!-- Titel Text-->
-                                        <Viewbox Grid.Column="1" Margin="0">
+                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <!--Remember we are on a Template... therefore RelativeSource binding-->
-                                            <TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Fallback Title'}"></TextBlock>
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeRegular}" Margin="0,0 ,0 -5">
+                                                    <Run Text="W" Foreground="{StaticResource WordOrangeBrush}"></Run><Run Text="O" Foreground="{StaticResource WordBlueBrush}"></Run><Run Text="R" Foreground="{StaticResource WordRedBrush}"></Run><Run Text="D" Foreground="{StaticResource WordGreenBrush}"></Run>
+                                                </TextBlock>
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center" Text="by HSLU">
+                                                    
+                                                </TextBlock>
+                                            </StackPanel>
                                         </Viewbox>
                                         <!--Window Buttons-->
                                         <StackPanel Orientation="Horizontal" Grid.Column="2">
