@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Learn.Wpf.Common;
+using Learn.Wpf.DataModels;
 
 namespace Learn.Wpf.ViewModels
 {
@@ -80,6 +81,8 @@ namespace Learn.Wpf.ViewModels
                 _outerMarginSize = value;
             }
         }
+
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.LoginPage;
 
         /// <summary>
         /// The margin around the window to allow for a drop shadow

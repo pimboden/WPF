@@ -9,6 +9,6 @@
       Title="LoginPage">
 
     <Grid>
-        <Button Content="test"></Button>
+           <Button Content="test" HorizontalAlignment="Center"></Button>
     </Grid>
 </Page>
