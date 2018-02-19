@@ -16,7 +16,7 @@ namespace Learn.Wpf.ValueConverters
             switch ((ApplicationPage)value)
             {
                 case ApplicationPage.LoginPage:
-                    return  new LoginPage();
+                    return  new Pages.LoginPage();
                 default:
                     Debugger.Break();
                     return null;
