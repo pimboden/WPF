@@ -1,58 +1,51 @@
-﻿
+﻿using System.Runtime.Remoting.Channels;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Learn.Wpf.AttachedProperties
 {
-    public class PasswordBoxProperties
+
+    /// <summary>
+    /// The MonitorPassword attached property for the <see cref="PasswordBox"/>
+    /// </summary>
+    public class MonitorPasswordProperty : BaseAttachedProperty<MonitorPasswordProperty, bool>
     {
-
-        public static readonly DependencyProperty MonitorPasswordProperty = DependencyProperty.RegisterAttached("MonitorPassword", typeof(bool), typeof(PasswordBoxProperties), new PropertyMetadata(false, OnMonitorPasswordChanged));
-
-        private static void OnMonitorPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public override void OnValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if(!(d is PasswordBox passwordBox))
+            //Get the calles
+            var passwordBox = sender as PasswordBox;
+
+            if(passwordBox == null)
                 return;
+
+            //Remove prevoius event
             passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
 
+            //Start listening if MonitorPassword is set to true
             if ((bool) e.NewValue)
             {
-                SetHasText(passwordBox);
+                //Set default value 
+                HasTextProperty.SetValue(passwordBox);
                 passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
             }
+
         }
 
-        private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!(sender is PasswordBox passwordBox))
-                return;
-             SetHasText(passwordBox);
+            HasTextProperty.SetValue((PasswordBox)sender);
         }
-        
+    }
 
-        public static void SetMonitorPassword(PasswordBox element, bool value)
+
+    /// <summary>
+    /// The HasText attached property for the <see cref="PasswordBox"/>
+    /// </summary>
+    public class HasTextProperty : BaseAttachedProperty<HasTextProperty, bool>
+    {
+        public  static  void SetValue(DependencyObject sender)
         {
-            element.SetValue(MonitorPasswordProperty, value);
-        }
-
-        public static bool GetMonitorPassword(PasswordBox element)
-        {
-            return (bool)element.GetValue(MonitorPasswordProperty);
-        }
-
-
-
-
-        public static readonly DependencyProperty HasTextProperty = DependencyProperty.RegisterAttached("HasText", typeof(bool), typeof(PasswordBoxProperties),new PropertyMetadata(false));
-
-        private static void SetHasText(PasswordBox element)
-        {
-            element.SetValue(HasTextProperty, element.SecurePassword.Length >0);
-        }
-
-        public  static bool GetHasText(PasswordBox element)
-        {
-           return (bool)element.GetValue(HasTextProperty);
+            SetValue(sender, ((PasswordBox)sender).SecurePassword.Length > 0);
         }
     }
 }
