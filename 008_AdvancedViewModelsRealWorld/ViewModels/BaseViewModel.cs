@@ -1,4 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Learn.Wpf.Common;
 
 namespace Learn.Wpf.ViewModels
 {
@@ -21,6 +26,37 @@ namespace Learn.Wpf.ViewModels
         public void OnPropertyChanged(string name)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(name) );
+        }
+
+        #region Command Helpers
+        #endregion
+
+        /// <summary>
+        /// Runs a command if the updating flag is not set.<Br/>
+        /// If the flag is true (the function is running) the action is not run <br/>
+        /// If the flag is false, the action is run
+        /// </summary>
+        /// <param name="updatingFlag">the boolean property flag</param>
+        /// <param name="action">the action to run</param>
+        /// <returns></returns>
+        protected async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action)
+        {
+
+
+            if (updatingFlag.GetPropertyValue())
+            {
+                return;
+            }
+
+            updatingFlag.SetPropertyValue(true);
+            try
+            {
+                await action();
+            }
+            finally
+            {
+                updatingFlag.SetPropertyValue(false);
+            }
         }
     }
 }

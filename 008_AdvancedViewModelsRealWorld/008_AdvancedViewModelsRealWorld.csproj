@@ -69,7 +69,12 @@
     <Compile Include="Animation\StoryboardHelpers.cs" />
     <Compile Include="Animation\PageAnimation.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\ButtonProperties.cs" />
     <Compile Include="AttachedProperties\PasswordBoxProperties.cs" />
+    <Compile Include="Common\ExpressionHelpers.cs" />
+    <Compile Include="Common\IHavePassword.cs" />
+    <Compile Include="Common\SecureStringHelpers.cs" />
+    <Compile Include="Common\RelayParameterizedCommand.cs" />
     <Compile Include="DataModels\ApplicationPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
@@ -79,6 +84,7 @@
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Common\WindowResizer.cs" />
     <Page Include="Pages\LoginPage.xaml">

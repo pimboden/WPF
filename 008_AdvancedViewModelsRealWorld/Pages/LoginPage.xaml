@@ -1,12 +1,15 @@
-﻿<pages:BasePage x:Class="Learn.Wpf.Pages.LoginPage"
+﻿<pages:BasePage x:TypeArguments="viewmodels:LoginViewModel" x:Class="Learn.Wpf.Pages.LoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Learn.Wpf"
       xmlns:pages="clr-namespace:Learn.Wpf.Pages"
+      xmlns:viewmodels="clr-namespace:Learn.Wpf.ViewModels"
+      xmlns:attachedProperties="clr-namespace:Learn.Wpf.AttachedProperties"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="700"
+                x:Name="Page"
       Title="LoginPage">
     <Grid>
         <!--Main content scroll-->
@@ -16,15 +19,17 @@
                 <Border Background="{StaticResource ForegroundLightBrush}" CornerRadius="10" Padding="15 50 15 15" Width="330" Margin="50 50 50 0">
                     <StackPanel>
                         <!--Signup header-->
-                        <TextBlock Text="Sign Up" FontSize="{StaticResource FontSizeLarge}" FontFamily="{StaticResource LatoRegular}" Foreground="{StaticResource WordBlueBrush}"/>
+                        <TextBlock Text="Sign In" FontSize="{StaticResource FontSizeLarge}" FontFamily="{StaticResource LatoRegular}" Foreground="{StaticResource WordBlueBrush}"/>
                         <!--signub subgeader-->
                         <TextBlock Text=" It's about to get fun" FontSize="{StaticResource FontSizeRegular}" Foreground="{StaticResource ForegroundDarkBrush}" Margin="0 0 0 20"/>
                         <!--Email-->
-                        <TextBox Tag="Email" Style="{StaticResource TextBoxDefault}"/>
+                        <TextBox Tag="Email" Style="{StaticResource TextBoxDefault}" Text="{Binding Email }"/>
                         <!--Password-->
-                        <PasswordBox Tag="Password" Style="{StaticResource PasswordBoxDefault}" Margin="0 0 0 30"/>
-                        <!--Next Button-->
-                        <Button Content="Next" HorizontalAlignment="Center" Style="{StaticResource ButtonDefault}"/>
+                        <PasswordBox x:Name="PasswordText" Tag="Password" Style="{StaticResource PasswordBoxDefault}" Margin="0 0 0 30"/>
+                        <!--Login Button-->
+                        <Button Content="Login" 
+                                attachedProperties:IsBusyProperty.Value ="{Binding IsLoginRunning}"
+                                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Page}" HorizontalAlignment="Center" Style="{StaticResource ButtonDefault}"/>
                     </StackPanel>
                 </Border>
                 <Button Content=" I already have an account" HorizontalAlignment="Center" Style="{StaticResource TextButton}"/>
