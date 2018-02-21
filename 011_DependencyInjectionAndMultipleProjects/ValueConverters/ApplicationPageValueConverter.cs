@@ -17,8 +17,11 @@ namespace Learn.Wpf.ValueConverters
             {
                 case ApplicationPage.Login:
                     return  new Pages.LoginPage();
+                case ApplicationPage.Register:
+                    return new Pages.RegisterPage();
                 case ApplicationPage.Chat:
                     return new Pages.ChatPage();
+
                 default:
                     Debugger.Break();
                     return null;

@@ -38,6 +38,11 @@ namespace Learn.Wpf.ViewModels
         /// </summary>
         public ICommand LoginCommand { get; set; }
 
+        /// <summary>
+        /// The command to register for a new account
+        /// </summary>
+        public ICommand RegisterCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -51,7 +56,17 @@ namespace Learn.Wpf.ViewModels
 
             // Create commands
             LoginCommand = new RelayParameterizedCommand(async (parameter) => await Login(parameter));
-
+            RegisterCommand = new RelayCommand(async () => await RegisterAsync());
+        }
+        /// <summary>
+        ///  Takes the user to the register page
+        /// </summary>
+        /// <returns></returns>
+        private async Task RegisterAsync()
+        {
+            //TODO: Go to register page
+            ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            await Task.Delay(1);
         }
 
         /// <summary>

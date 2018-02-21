@@ -82,7 +82,7 @@ namespace Learn.Wpf.ViewModels
             }
         }
 
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Chat;
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
         /// <summary>
         /// The margin around the window to allow for a drop shadow
