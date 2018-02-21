@@ -15,8 +15,10 @@ namespace Learn.Wpf.ValueConverters
             //Fingd the appopiate page
             switch ((ApplicationPage)value)
             {
-                case ApplicationPage.LoginPage:
+                case ApplicationPage.Login:
                     return  new Pages.LoginPage();
+                case ApplicationPage.Chat:
+                    return new Pages.ChatPage();
                 default:
                     Debugger.Break();
                     return null;

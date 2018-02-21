@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Learn.Wpf"
         xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
+        xmlns:controls="clr-namespace:Learn.Wpf.Controls"
         mc:Ignorable="d"
         WindowStyle="None"
         MinHeight="{Binding WindowMinimumHeight}"
@@ -16,7 +17,7 @@
         Title="Learn Wpf" Height="600" Width="900">
 
     <Window.Resources>
-       
+
         <Style TargetType="{x:Type local:MainWindow}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -71,7 +72,7 @@
                                                     <Run Text="W" Foreground="{StaticResource WordOrangeBrush}"></Run><Run Text="O" Foreground="{StaticResource WordBlueBrush}"></Run><Run Text="R" Foreground="{StaticResource WordRedBrush}"></Run><Run Text="D" Foreground="{StaticResource WordGreenBrush}"></Run>
                                                 </TextBlock>
                                                 <TextBlock FontFamily="{StaticResource LatoBold}" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center" Text="by HSLU">
-                                                    
+
                                                 </TextBlock>
                                             </StackPanel>
                                         </Viewbox>
@@ -83,13 +84,9 @@
                                         </StackPanel>
                                     </Grid>
                                     <!--Page Content-->
-                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" Background="{StaticResource WordBlueBrush}">
-                                        <Border>
-                                        <Border.Background>
-                                            <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/Backgrounds/emoji-background.png"/>
-                                        </Border.Background>
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+
                                         <ContentPresenter Content="{TemplateBinding Content}" ></ContentPresenter>
-                                        </Border>
                                     </Border>
                                 </Grid>
 
@@ -107,8 +104,21 @@
                       CornerRadius="0"
                       GlassFrameThickness="0"/>
     </WindowChrome.WindowChrome>
+    <Border Background="{StaticResource WordBlueBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/Backgrounds/emoji-background.png"/>
+            </Grid.Background>
 
-    <Grid>
-        <Frame x:Name="MainFrame" Content="{Binding CurrentPage, Converter={valueConverters:ApplicationPageValueConverter}}"></Frame>
-    </Grid>
+            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={valueConverters:ApplicationPageValueConverter}}" Margin="0,-224,0,224"></Frame>
+            <!--Side Menu main background-->
+            <controls:SideMenuControl  Grid.Column="0">
+                <Button Content="Test"></Button>
+            </controls:SideMenuControl>
+        </Grid>
+    </Border>
 </Window>

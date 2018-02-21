@@ -6,7 +6,8 @@
     public enum ApplicationPage
     {
        
-        LoginPage = 0
+        Login = 0,
+        Chat = 1
     }
 
 }
