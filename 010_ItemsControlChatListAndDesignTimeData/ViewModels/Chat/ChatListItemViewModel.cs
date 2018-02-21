@@ -33,5 +33,15 @@ namespace Learn.Wpf.ViewModels.Chat
         public string ProfilePictureRGB { get; set; }
 
 
+        /// <summary>
+        /// Indicates if unread messages are available
+        /// </summary>
+        public bool IsNewContentAvailable { get; set; }
+
+        /// <summary>
+        /// True if item is selected
+        /// </summary>
+        public bool IsSelected { get; set; }
+        
     }
 }
