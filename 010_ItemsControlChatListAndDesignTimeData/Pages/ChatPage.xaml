@@ -1,0 +1,18 @@
+﻿<pages:BasePage x:TypeArguments="viewmodels:LoginViewModel" x:Class="Learn.Wpf.Pages.ChatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Learn.Wpf"
+      xmlns:pages="clr-namespace:Learn.Wpf.Pages"
+      xmlns:viewmodels="clr-namespace:Learn.Wpf.ViewModels"
+      xmlns:attachedProperties="clr-namespace:Learn.Wpf.AttachedProperties"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="700"
+                x:Name="Page"
+      Title="Chat">
+    <Border>
+       
+    </Border>
+</pages:BasePage>
+
