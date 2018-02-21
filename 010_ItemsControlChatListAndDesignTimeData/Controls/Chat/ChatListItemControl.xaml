@@ -5,49 +5,82 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Learn.Wpf.Controls.Chat"
              xmlns:chatdesign="clr-namespace:Learn.Wpf.ViewModels.Chat.Design"
+             xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
              mc:Ignorable="d" 
              Height="60"
              d:DesignHeight="60" d:DesignWidth="300">
-    <Grid d:DataContext="{x:Static chatdesign:ChatListItemDesignModel.Instance }" Background="{StaticResource ForegroundLightBrush}">
-        <Grid.ColumnDefinitions>
-            <!--New message Indicator bar-->
-            <ColumnDefinition Width="Auto"/>
-            <!--Profile picture-->
-            <ColumnDefinition Width="Auto"/>
-            <!--Main content-->
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <!--New message Indicator bar-->
-        <Border Background="Red" Width="5" Grid.Column="0"></Border>
-        <!--Profile picture-->
-        <Border Padding="8" Grid.Column="1">
-            <!--Profile picture background-->
-            <Border Background="{StaticResource WordBlueBrush}"
+
+    <UserControl.Resources>
+        <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid x:Name="container" Background="{StaticResource ForegroundLightBrush}">
+                            <Grid.ColumnDefinitions>
+                                <!--New message Indicator bar-->
+                                <ColumnDefinition Width="Auto"/>
+                                <!--Profile picture-->
+                                <ColumnDefinition Width="Auto"/>
+                                <!--Main content-->
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--New message Indicator bar-->
+                            <Border Background="Red" Width="5" Grid.Column="0"></Border>
+                            <!--Profile picture-->
+                            <Border Padding="8" Grid.Column="1">
+                                <!--Profile picture background-->
+                                <Border Background="{Binding ProfilePictureRGB, Converter={valueConverters:StringRGBToBrushConverter}}"
                     Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                     CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                <!--Profile picture initials-->
-                <TextBlock Text="{Binding Initials}" 
+                                    <!--Profile picture initials-->
+                                    <TextBlock Text="{Binding Initials}" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center" 
                            Foreground="{StaticResource BackgroundLightBrush}"
                            FontSize="{StaticResource FontSizeAverage}" 
                            FontFamily="{StaticResource LatoRegular}"/>
-            </Border>
-        </Border>
-        <!--Main content-->
-        <Border Grid.Column="2" Padding="0 0 8 0">
-        <StackPanel VerticalAlignment="Center" >
-            <!--Name-->
-                <TextBlock Text="{Binding Name}" 
+                                </Border>
+                            </Border>
+                            <!--Main content-->
+                            <Border Grid.Column="2" Padding="0 0 8 0">
+                                <StackPanel VerticalAlignment="Center" >
+                                    <!--Name-->
+                                    <TextBlock Text="{Binding Name}" 
                        Foreground="{StaticResource WordBlueBrush}"
                        TextTrimming="CharacterEllipsis"
                        FontFamily="{StaticResource LatoRegular}"/>
-            <!--Message-->
-                <TextBlock Text="{Binding Message}" 
+                                    <!--Message-->
+                                    <TextBlock Text="{Binding Message}" 
                        Foreground="{StaticResource ForegroundDarkBrush}"
                        TextTrimming="CharacterEllipsis"
                        FontFamily="{StaticResource LatoRegular}"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="{StaticResource WordVeryLightBlue}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="{StaticResource ForegroundLight}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="container" Value="{StaticResource ForegroundDarkBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <ContentControl d:DataContext="{x:Static chatdesign:ChatListItemDesignModel.Instance}" 
+                    Style="{StaticResource ContentStyle}"/>
 </UserControl>

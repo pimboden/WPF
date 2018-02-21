@@ -22,7 +22,7 @@ namespace Learn.Wpf.ViewModels.Chat.Design
             Initials = "LM";
             Name = "Luke";
             Message = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam";
-            ProfilePictureRGB = "ecf6fb";
+            ProfilePictureRGB = "3099c5";
         }
     }
 }
