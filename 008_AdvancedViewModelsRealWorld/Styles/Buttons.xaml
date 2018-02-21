@@ -7,7 +7,8 @@
             <!-- Order is Important like CSS-->
             <ResourceDictionary Source="Colors.xaml"/>
             <ResourceDictionary Source="Fonst.xaml"/>
-        </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Texts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     
     <!--Hoverless Button-->
     <Style  TargetType="{x:Type ButtonBase}" x:Key="Hoverless">
@@ -95,11 +96,9 @@
                                     Margin="{TemplateBinding Padding}" 
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <TextBlock  
+                            <TextBlock  Style="{StaticResource SpinningText}"
                                  Visibility="{TemplateBinding attachedProperties:IsBusyProperty.Value, Converter={valueConverters:BooleanToVisibilityConverter}, ConverterParameter=True}"
-                                Text="Busy" 
                                     Focusable="False" 
-                                    FontFamily="{TemplateBinding FontFamily}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                     Margin="{TemplateBinding Padding}" 
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
@@ -155,6 +154,9 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{StaticResource ForegroundDarkBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource WordOrangeBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

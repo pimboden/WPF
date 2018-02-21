@@ -161,6 +161,7 @@
     <Resource Include="Fonts\Lato\Lato-SemiboldItalic.ttf" />
     <Resource Include="Fonts\Lato\Lato-Thin.ttf" />
     <Resource Include="Fonts\Lato\Lato-ThinItalic.ttf" />
+    <Resource Include="Fonts\FontAwesome\fontawesome-webfont.ttf" />
     <None Include="Images\Logo\Logo.ai" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
