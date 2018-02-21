@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Learn.Wpf"
         xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
         xmlns:controls="clr-namespace:Learn.Wpf.Controls"
+        xmlns:chat="clr-namespace:Learn.Wpf.Controls.Chat"
         mc:Ignorable="d"
         WindowStyle="None"
         MinHeight="{Binding WindowMinimumHeight}"
@@ -117,7 +118,7 @@
             <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding CurrentPage, Converter={valueConverters:ApplicationPageValueConverter}}" Margin="0,-224,0,224"></Frame>
             <!--Side Menu main background-->
             <controls:SideMenuControl  Grid.Column="0">
-                <Button Content="Test"></Button>
+                <chat:ChatListControl/>
             </controls:SideMenuControl>
         </Grid>
     </Border>

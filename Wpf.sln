@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "008_AdvancedViewModelsRealW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "009_UserControlsSideMenuContent", "009_UserControlsSideMenuContent\009_UserControlsSideMenuContent.csproj", "{9742C840-F280-4687-B765-E43A107470C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "010_ItemsControlChatListAndDesignTimeData", "010_ItemsControlChatListAndDesignTimeData\010_ItemsControlChatListAndDesignTimeData.csproj", "{FD75382F-C23F-473A-92C3-1281D3EA00F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{9742C840-F280-4687-B765-E43A107470C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9742C840-F280-4687-B765-E43A107470C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9742C840-F280-4687-B765-E43A107470C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD75382F-C23F-473A-92C3-1281D3EA00F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD75382F-C23F-473A-92C3-1281D3EA00F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD75382F-C23F-473A-92C3-1281D3EA00F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD75382F-C23F-473A-92C3-1281D3EA00F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
