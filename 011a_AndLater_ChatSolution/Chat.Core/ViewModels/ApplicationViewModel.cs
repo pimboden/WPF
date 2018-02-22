@@ -17,5 +17,9 @@ namespace Learn.Wpf.Core.ViewModels
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
 
 
+        /// <summary>
+        /// True if the side menu should be shown
+        /// </summary>
+        public bool SidemenuVisible { get; set; } = false;
     }
 }

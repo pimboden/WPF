@@ -16,19 +16,24 @@ namespace Learn.Wpf.AttachedProperties
         /// <summary>
         /// The attached Property for this class
         /// </summary>
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(TProperty), typeof(BaseAttachedProperty<TParent, TProperty>), new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChange)));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
+            "Value", 
+            typeof(TProperty), 
+            typeof(BaseAttachedProperty<TParent, TProperty>), 
+            new PropertyMetadata(
+                default(TProperty),
+                new PropertyChangedCallback(OnValuePropertyChange),
+                new CoerceValueCallback(OnValuePropertyUpdate)));
+
 
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
 
-        /// <summary>
-        /// The method that is called when any attached property of this type changes
-        /// </summary>
-        /// <param name="sender">The ui element that had it's property changed</param>
-        /// <param name="e">The arguments for the event</param>
-        public virtual void OnValuePropertyChanged(DependencyObject sender,DependencyPropertyChangedEventArgs e)
-        {
 
-        }
+        /// <summary>
+        /// Even if the value is the same
+        /// </summary>
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
+
 
         /// <summary>
         /// Callback event when the value porperty is changed
@@ -44,6 +49,43 @@ namespace Learn.Wpf.AttachedProperties
             Instance.ValueChanged(sender, e);
         }
 
+
+        /// <summary>
+        /// The method that is called when any attached property of this type changes
+        /// </summary>
+        /// <param name="sender">The ui element that had it's property changed</param>
+        /// <param name="e">The arguments for the event</param>
+        public virtual void OnValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// The callback event when the ValueProperty is changed, even with the same value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static object OnValuePropertyUpdate(DependencyObject sender, object value)
+        {
+            //Call the parent function
+            Instance.OnValuePropertyUpdated(sender, value);
+
+            //call event listeners
+            Instance.ValueUpdated(sender, value);
+
+            return value;
+        }
+
+
+        /// <summary>
+        /// The method that is called when any attached property of this type changes even with same values
+        /// </summary>
+        /// <param name="sender">The ui element that had it's property changed</param>
+        /// <param name="e">The arguments for the event</param>
+        public virtual void OnValuePropertyUpdated(DependencyObject sender, object value)
+        {
+
+        }
         /// <summary>
         /// Sets the attached property
         /// </summary>
