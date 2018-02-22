@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Learn.Wpf.ViewModels.Chat
+namespace Learn.Wpf.Core.ViewModels.Chat
 {
     /// <summary>
     /// A viewmodel for the overview Chatlist

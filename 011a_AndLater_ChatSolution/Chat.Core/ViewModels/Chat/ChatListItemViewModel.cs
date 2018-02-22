@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Learn.Wpf.ViewModels.Chat
+﻿namespace Learn.Wpf.Core.ViewModels.Chat
 {
     /// <summary>
     /// A viewmodel for a ChatListItem

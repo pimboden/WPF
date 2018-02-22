@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Learn.Wpf.Common
+namespace Learn.Wpf.Core.Security
 {
 
     /// <summary>

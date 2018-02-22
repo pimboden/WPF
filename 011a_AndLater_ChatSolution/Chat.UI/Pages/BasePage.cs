@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Learn.Wpf.Animation;
-using Learn.Wpf.ViewModels;
+using Learn.Wpf.Core.ViewModels;
 
 namespace Learn.Wpf.Pages
 {

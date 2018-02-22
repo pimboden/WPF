@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Learn.Wpf.Common;
-using Learn.Wpf.DataModels;
+using Learn.Wpf.Core.Common;
+using Learn.Wpf.Core.DataModels;
+using Learn.Wpf.Core.ViewModels;
 
 namespace Learn.Wpf.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿namespace Learn.Wpf.DataModels
+﻿namespace Learn.Wpf.Core.DataModels
 {
     /// <summary>
     /// Available application Pages

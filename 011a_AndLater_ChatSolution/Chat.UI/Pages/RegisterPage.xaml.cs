@@ -1,8 +1,6 @@
 ﻿using System.Security;
-using System.Windows;
-using System.Windows.Controls;
-using Learn.Wpf.Common;
-using Learn.Wpf.ViewModels;
+using Learn.Wpf.Core.Common;
+using Learn.Wpf.Core.ViewModels;
 
 namespace Learn.Wpf.Pages
 {

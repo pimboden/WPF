@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Learn.Wpf.ViewModels.Chat.Design
+namespace Learn.Wpf.Core.ViewModels.Chat.Design
 {
 
     /// <summary>

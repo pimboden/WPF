@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Learn.Wpf.Controls.Chat"
-             xmlns:chatdesign="clr-namespace:Learn.Wpf.ViewModels.Chat.Design"
              xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
+             xmlns:chatdesign="clr-namespace:Learn.Wpf.Core.ViewModels.Chat.Design;assembly=Learn.Wpf.Chat.Core"
              mc:Ignorable="d" 
              Height="60"
              d:DesignHeight="60" d:DesignWidth="300">

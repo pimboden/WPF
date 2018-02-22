@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Learn.Wpf.Common
+namespace Learn.Wpf.Core.Expressions
 {
     /// <summary>
     /// A helper class for expressions

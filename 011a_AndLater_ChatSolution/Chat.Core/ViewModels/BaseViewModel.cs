@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Learn.Wpf.Common;
+using Learn.Wpf.Core.Expressions;
 
-namespace Learn.Wpf.ViewModels
+namespace Learn.Wpf.Core.ViewModels
 {
 
     /// <summary>
@@ -39,7 +38,7 @@ namespace Learn.Wpf.ViewModels
         /// <param name="updatingFlag">the boolean property flag</param>
         /// <param name="action">the action to run</param>
         /// <returns></returns>
-        protected async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action)
+        protected async Task RunCommandAsync(Expression<Func<bool>> updatingFlag, Func<Task> action)
         {
 
 

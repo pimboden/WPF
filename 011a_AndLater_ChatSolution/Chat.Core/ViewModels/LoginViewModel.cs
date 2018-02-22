@@ -1,12 +1,10 @@
-﻿using System.ComponentModel;
-using System.Security;
+﻿using System.Security;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using Learn.Wpf.Common;
-using Learn.Wpf.DataModels;
+using Learn.Wpf.Core.Common;
+using Learn.Wpf.Core.Security;
 
-namespace Learn.Wpf.ViewModels
+namespace Learn.Wpf.Core.ViewModels
 {
     /// <summary>
     /// The View Model for a login screen
@@ -65,7 +63,7 @@ namespace Learn.Wpf.ViewModels
         private async Task RegisterAsync()
         {
             //TODO: Go to register page
-            ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            //((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
             await Task.Delay(1);
         }
 
@@ -78,7 +76,7 @@ namespace Learn.Wpf.ViewModels
         {
 
             // ReSharper disable once PossibleNullReferenceException
-            await RunCommand(() => IsLoginRunning, async () =>
+            await RunCommandAsync(() => IsLoginRunning, async () =>
             {
                 await Task.Delay(5000);
                 var pass = (parameter as IHavePassword).SecurePassword.Unsecure();

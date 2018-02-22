@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using Learn.Wpf.DataModels;
+using Learn.Wpf.Core.DataModels;
 
 namespace Learn.Wpf.ValueConverters
 {
