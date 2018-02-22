@@ -62,10 +62,10 @@ namespace Learn.Wpf.Pages
     /// <param name="e"></param>
     private async void BasePage_Loaded(object sender, RoutedEventArgs e)
     {
-        await AnimateIn();
+        await AnimateInAsync();
     }
 
-    public async Task AnimateIn()
+    public async Task AnimateInAsync()
     {
         if (PageLoadAnimation == PageAnimation.None)
             return;
@@ -77,7 +77,7 @@ namespace Learn.Wpf.Pages
         }
     }
 
-    public async Task AnimateOut()
+    public async Task AnimateOutAsync()
     {
         if (PageUnloadAnimation == PageAnimation.None)
             return;

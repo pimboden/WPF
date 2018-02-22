@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Channels;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Learn.Wpf.AttachedProperties
@@ -13,9 +12,8 @@ namespace Learn.Wpf.AttachedProperties
         public override void OnValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             //Get the calles
-            var passwordBox = sender as PasswordBox;
 
-            if(passwordBox == null)
+            if(!(sender is PasswordBox passwordBox))
                 return;
 
             //Remove prevoius event

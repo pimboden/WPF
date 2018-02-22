@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Learn.Wpf.Core.ViewModels;
 using Learn.Wpf.ViewModels;
 
 namespace Learn.Wpf
@@ -8,6 +9,10 @@ namespace Learn.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Temporary
+        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
+
+
         public MainWindow()
         {
             InitializeComponent();

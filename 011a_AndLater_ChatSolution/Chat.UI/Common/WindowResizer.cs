@@ -35,32 +35,32 @@ namespace Learn.Wpf.Common
         /// <summary>
         /// The window to handle the resizing for
         /// </summary>
-        private Window mWindow;
+        private readonly Window _window;
 
         /// <summary>
         /// The last calculated available screen size
         /// </summary>
-        private Rect mScreenSize = new Rect();
+        private Rect _screenSize;
 
         /// <summary>
         /// How close to the edge the window has to be to be detected as at the edge of the screen
         /// </summary>
-        private int mEdgeTolerance = 2;
+        private readonly int _edgeTolerance = 2;
 
         /// <summary>
         /// The transform matrix used to convert WPF sizes to screen pixels
         /// </summary>
-        private Matrix mTransformToDevice;
+        private Matrix _transformToDevice;
 
         /// <summary>
         /// The last screen the window was on
         /// </summary>
-        private IntPtr mLastScreen;
+        private IntPtr _lastScreen;
 
         /// <summary>
         /// The last known dock position
         /// </summary>
-        private WindowDockPosition mLastDock = WindowDockPosition.Undocked;
+        private WindowDockPosition _lastDock = WindowDockPosition.Undocked;
 
         #endregion
 
@@ -68,13 +68,13 @@ namespace Learn.Wpf.Common
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetCursorPos(out POINT lpPoint);
+        static extern bool GetCursorPos(out Point lpPoint);
 
         [DllImport("user32.dll")]
-        static extern bool GetMonitorInfo(IntPtr hMonitor, MONITORINFO lpmi);
+        static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
 
         [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr MonitorFromPoint(POINT pt, MonitorOptions dwFlags);
+        static extern IntPtr MonitorFromPoint(Point pt, MonitorOptions dwFlags);
 
         #endregion
 
@@ -96,16 +96,16 @@ namespace Learn.Wpf.Common
         /// <param name="adjustSize">The callback for the host to adjust the maximum available size if needed</param>
         public WindowResizer(Window window)
         {
-            mWindow = window;
+            _window = window;
 
             // Create transform visual (for converting WPF size to pixel size)
             GetTransform();
 
             // Listen out for source initialized to setup
-            mWindow.SourceInitialized += Window_SourceInitialized;
+            _window.SourceInitialized += Window_SourceInitialized;
 
             // Monitor for edge docking
-            mWindow.SizeChanged += Window_SizeChanged;
+            _window.SizeChanged += Window_SizeChanged;
         }
 
         #endregion
@@ -118,17 +118,17 @@ namespace Learn.Wpf.Common
         private void GetTransform()
         {
             // Get the visual source
-            var source = PresentationSource.FromVisual(mWindow);
+            var source = PresentationSource.FromVisual(_window);
 
             // Reset the transform to default
-            mTransformToDevice = default(Matrix);
+            _transformToDevice = default(Matrix);
 
             // If we cannot get the source, ignore
             if (source == null)
                 return;
 
             // Otherwise, get the new transform object
-            mTransformToDevice = source.CompositionTarget.TransformToDevice;
+            _transformToDevice = source.CompositionTarget.TransformToDevice;
         }
 
         /// <summary>
@@ -136,10 +136,10 @@ namespace Learn.Wpf.Common
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Window_SourceInitialized(object sender, System.EventArgs e)
+        private void Window_SourceInitialized(object sender, EventArgs e)
         {
             // Get the handle of this window
-            var handle = (new WindowInteropHelper(mWindow)).Handle;
+            var handle = (new WindowInteropHelper(_window)).Handle;
             var handleSource = HwndSource.FromHwnd(handle);
 
             // If not found, end
@@ -162,27 +162,27 @@ namespace Learn.Wpf.Common
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             // We cannot find positioning until the window transform has been established
-            if (mTransformToDevice == default(Matrix))
+            if (_transformToDevice == default(Matrix))
                 return;
 
             // Get the WPF size
             var size = e.NewSize;
 
             // Get window rectangle
-            var top = mWindow.Top;
-            var left = mWindow.Left;
+            var top = _window.Top;
+            var left = _window.Left;
             var bottom = top + size.Height;
-            var right = left + mWindow.Width;
+            var right = left + _window.Width;
 
             // Get window position/size in device pixels
-            var windowTopLeft = mTransformToDevice.Transform(new Point(left, top));
-            var windowBottomRight = mTransformToDevice.Transform(new Point(right, bottom));
+            var windowTopLeft = _transformToDevice.Transform(new System.Windows.Point(left, top));
+            var windowBottomRight = _transformToDevice.Transform(new System.Windows.Point(right, bottom));
 
             // Check for edges docked
-            var edgedTop = windowTopLeft.Y <= (mScreenSize.Top + mEdgeTolerance);
-            var edgedLeft = windowTopLeft.X <= (mScreenSize.Left + mEdgeTolerance);
-            var edgedBottom = windowBottomRight.Y >= (mScreenSize.Bottom - mEdgeTolerance);
-            var edgedRight = windowBottomRight.X >= (mScreenSize.Right - mEdgeTolerance);
+            var edgedTop = windowTopLeft.Y <= (_screenSize.Top + _edgeTolerance);
+            var edgedLeft = windowTopLeft.X <= (_screenSize.Left + _edgeTolerance);
+            var edgedBottom = windowBottomRight.Y >= (_screenSize.Bottom - _edgeTolerance);
+            var edgedRight = windowBottomRight.X >= (_screenSize.Right - _edgeTolerance);
 
             // Get docked position
             var dock = WindowDockPosition.Undocked;
@@ -197,12 +197,12 @@ namespace Learn.Wpf.Common
                 dock = WindowDockPosition.Undocked;
 
             // If dock has changed
-            if (dock != mLastDock)
+            if (dock != _lastDock)
                 // Inform listeners
                 WindowDockChanged(dock);
 
             // Save last dock position
-            mLastDock = dock;
+            _lastDock = dock;
         }
 
         #endregion
@@ -240,35 +240,34 @@ namespace Learn.Wpf.Common
         /// </summary>
         /// <param name="hwnd"></param>
         /// <param name="lParam"></param>
-        private void WmGetMinMaxInfo(System.IntPtr hwnd, System.IntPtr lParam)
+        private void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
         {
             // Get the point position to determine what screen we are on
-            POINT lMousePosition;
-            GetCursorPos(out lMousePosition);
+            GetCursorPos(out var lMousePosition);
 
             // Get the primary monitor at cursor position 0,0
-            var lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
+            var lPrimaryScreen = MonitorFromPoint(new Point(0, 0), MonitorOptions.MonitorDefaulttoprimary);
 
             // Try and get the primary screen information
-            var lPrimaryScreenInfo = new MONITORINFO();
+            var lPrimaryScreenInfo = new Monitorinfo();
             if (GetMonitorInfo(lPrimaryScreen, lPrimaryScreenInfo) == false)
                 return;
 
             // Now get the current screen
-            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MONITOR_DEFAULTTONEAREST);
+            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MonitorDefaulttonearest);
 
             // If this has changed from the last one, update the transform
-            if (lCurrentScreen != mLastScreen || mTransformToDevice == default(Matrix))
+            if (lCurrentScreen != _lastScreen || _transformToDevice == default(Matrix))
                 GetTransform();
 
             // Store last know screen
-            mLastScreen = lCurrentScreen;
+            _lastScreen = lCurrentScreen;
 
             // Get min/max structure to fill with information
-            var lMmi = (MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(MINMAXINFO));
+            var lMmi = (Minmaxinfo)Marshal.PtrToStructure(lParam, typeof(Minmaxinfo));
 
             // If it is the primary screen, use the rcWork variable
-            if (lPrimaryScreen.Equals(lCurrentScreen) == true)
+            if (lPrimaryScreen.Equals(lCurrentScreen))
             {
                 lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
                 lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
@@ -285,13 +284,13 @@ namespace Learn.Wpf.Common
             }
 
             // Set min size
-            var minSize = mTransformToDevice.Transform(new Point(mWindow.MinWidth, mWindow.MinHeight));
+            var minSize = _transformToDevice.Transform(new System.Windows.Point(_window.MinWidth, _window.MinHeight));
 
             lMmi.ptMinTrackSize.X = (int)minSize.X;
             lMmi.ptMinTrackSize.Y = (int)minSize.Y;
 
             // Store new size
-            mScreenSize = new Rect(lMmi.ptMaxPosition.X, lMmi.ptMaxPosition.Y, lMmi.ptMaxSize.X, lMmi.ptMaxSize.Y);
+            _screenSize = new Rect(lMmi.ptMaxPosition.X, lMmi.ptMaxPosition.Y, lMmi.ptMaxSize.X, lMmi.ptMaxSize.Y);
 
             // Now we have the max size, allow the host to tweak as needed
             Marshal.StructureToPtr(lMmi, lParam, true);
@@ -302,16 +301,16 @@ namespace Learn.Wpf.Common
 
     enum MonitorOptions : uint
     {
-        MONITOR_DEFAULTTONULL = 0x00000000,
-        MONITOR_DEFAULTTOPRIMARY = 0x00000001,
-        MONITOR_DEFAULTTONEAREST = 0x00000002
+        MonitorDefaulttonull = 0x00000000,
+        MonitorDefaulttoprimary = 0x00000001,
+        MonitorDefaulttonearest = 0x00000002
     }
 
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-    public class MONITORINFO
+    public class Monitorinfo
     {
-        public int cbSize = Marshal.SizeOf(typeof(MONITORINFO));
+        public int cbSize = Marshal.SizeOf(typeof(Monitorinfo));
         public Rectangle rcMonitor = new Rectangle();
         public Rectangle rcWork = new Rectangle();
         public int dwFlags = 0;
@@ -325,25 +324,25 @@ namespace Learn.Wpf.Common
 
         public Rectangle(int left, int top, int right, int bottom)
         {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
+            Left = left;
+            Top = top;
+            Right = right;
+            Bottom = bottom;
         }
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct MINMAXINFO
+    public struct Minmaxinfo
     {
-        public POINT ptReserved;
-        public POINT ptMaxSize;
-        public POINT ptMaxPosition;
-        public POINT ptMinTrackSize;
-        public POINT ptMaxTrackSize;
+        public Point ptReserved;
+        public Point ptMaxSize;
+        public Point ptMaxPosition;
+        public Point ptMinTrackSize;
+        public Point ptMaxTrackSize;
     };
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINT
+    public struct Point
     {
         /// <summary>
         /// x coordinate of point.
@@ -357,10 +356,10 @@ namespace Learn.Wpf.Common
         /// <summary>
         /// Construct a point of coordinates (x,y).
         /// </summary>
-        public POINT(int x, int y)
+        public Point(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
     }
 

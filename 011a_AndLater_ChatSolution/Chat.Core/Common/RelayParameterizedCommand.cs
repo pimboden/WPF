@@ -8,7 +8,7 @@ namespace Learn.Wpf.Core.Common
         /// <summary>
         /// The action to run
         /// </summary>
-        private Action<object> _action;
+        private readonly Action<object> _action;
 
         /// <summary>
         /// A relay command can always execute
