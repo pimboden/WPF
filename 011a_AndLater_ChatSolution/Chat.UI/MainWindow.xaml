@@ -7,6 +7,7 @@
         xmlns:valueConverters="clr-namespace:Learn.Wpf.ValueConverters"
         xmlns:controls="clr-namespace:Learn.Wpf.Controls"
         xmlns:chat="clr-namespace:Learn.Wpf.Controls.Chat"
+        xmlns:viewModels="clr-namespace:Learn.Wpf.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         MinHeight="{Binding WindowMinimumHeight}"
@@ -115,7 +116,7 @@
                 <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0 0 500 500" ImageSource="/Images/Backgrounds/emoji-background.png"/>
             </Grid.Background>
 
-            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding  ApplicationViewModel.CurrentPage, ElementName=AppWindow, Converter={valueConverters:ApplicationPageValueConverter}}"></Frame>
+            <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding ApplicationViewModel.CurrentPage, Source={x:Static viewModels:ViewModelLocator.Instance}, Converter={valueConverters:ApplicationPageValueConverter}}"></Frame>
             <!--Side Menu main background-->
             <controls:SideMenuControl  Grid.Column="0">
                 <chat:ChatListControl/>

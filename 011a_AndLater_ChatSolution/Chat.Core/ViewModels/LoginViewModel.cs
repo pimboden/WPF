@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Learn.Wpf.Core.Common;
+using Learn.Wpf.Core.DataModels;
 using Learn.Wpf.Core.Security;
 
 namespace Learn.Wpf.Core.ViewModels
@@ -62,8 +63,7 @@ namespace Learn.Wpf.Core.ViewModels
         /// <returns></returns>
         private async Task RegisterAsync()
         {
-            //TODO: Go to register page
-            //((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            IoC.IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
             await Task.Delay(1);
         }
 

@@ -9,10 +9,6 @@ namespace Learn.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Temporary
-        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
-
-
         public MainWindow()
         {
             InitializeComponent();
